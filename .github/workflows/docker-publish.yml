@@ -1,24 +1,20 @@
 name: Publish Docker Image
 
 on:
-  push:
-    branches:
-      - main
-      - dev
-    paths:
-      - "Dockerfile"
-      - ".dockerignore"
-      - "app/**"
-      - "components/**"
-      - "contexts/**"
-      - "hooks/**"
-      - "lib/**"
-      - "stores/**"
-      - "locales/**"
-      - "public/**"
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/docker-publish.yml"
+  # DISABLED in this fork -- trigger reduced to manual only.
+  #
+  # This is upstream's own publish pipeline. It fired on push to main for changes
+  # under app/, components/, lib/, locales/, public/ -- which is most of what a
+  # rebrand touches -- and its image name resolves to
+  # ghcr.io/${{ github.repository }}, i.e. ghcr.io/proemail/webmail. That is the
+  # exact tag deploy.yml builds and the mail server pulls.
+  #
+  # So every push started two builds racing to publish :latest, and whichever
+  # finished last won. The deploy step could pull an image that was not the one
+  # it had just built, and a push could appear to have no effect. That is
+  # indistinguishable from "there is no CI/CD".
+  #
+  # Left in the tree rather than deleted so merges from upstream stay clean.
   workflow_dispatch:
 
 jobs:
