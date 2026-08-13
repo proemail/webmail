@@ -128,7 +128,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         const stalwartAdmin = data.stalwartAdmin === true;
         setIsStalwartAdmin(stalwartAdmin);
 
-        // If neither password-based admin nor Stalwart admin, redirect away
+        // If neither password-based admin nor the mail server admin, redirect away
         if (!data.enabled && !stalwartAdmin) {
           router.replace('/');
           return;
@@ -139,7 +139,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           return;
         }
 
-        // If Stalwart admin but not yet authenticated, auto-login
+        // If the mail server admin but not yet authenticated, auto-login
         if (stalwartAdmin) {
           const loginRes = await apiFetch('/api/admin/auth', {
             method: 'POST',

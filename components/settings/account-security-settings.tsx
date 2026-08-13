@@ -786,7 +786,7 @@ export function AccountSecuritySettings() {
 
   // Wait for `client` before probing. On reload the persisted `isAuthenticated`
   // flips true before the async OAuth reconnect sets `client`; probing in that
-  // window reads a null client, decides the server isn't Stalwart, and caches
+  // window reads a null client, decides the server isn't the mail server, and caches
   // that wrong verdict. Gating on `client` (which is set only after connect()
   // populates the session capabilities) makes the probe run with real data.
   useEffect(() => {
@@ -815,7 +815,7 @@ export function AccountSecuritySettings() {
   }
 
   if (isStalwart === false) {
-    // Even when Stalwart account-management isn't exposed (common for OAuth
+    // Even when the mail server account-management isn't exposed (common for OAuth
     // sessions, whose tokens may lack the management capability), the
     // cross-device mobile pairing still works — it only needs the OAuth
     // refresh-token cookie, not `urn:stalwart:jmap`. So surface the QR linker

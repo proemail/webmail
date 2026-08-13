@@ -106,7 +106,7 @@ export function AuthTab() {
       if (res.ok) {
         setMessage({
           type: 'success',
-          text: `OAuth client ${data.action} on Stalwart (${data.issuerUrl}). ${data.redirectUriCount} redirect URI(s) registered for ${data.origin}.`,
+          text: `OAuth client ${data.action} on the mail server (${data.issuerUrl}). ${data.redirectUriCount} redirect URI(s) registered for ${data.origin}.`,
         });
         setEdits({});
         setSetupOpen(false);
@@ -161,11 +161,11 @@ export function AuthTab() {
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-primary shrink-0" />
-              <h3 className="text-sm font-medium text-foreground">Auto-configure OAuth (Stalwart)</h3>
+              <h3 className="text-sm font-medium text-foreground">Auto-configure OAuth (the mail server)</h3>
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              Registers an OAuth client on the connected Stalwart server, generates a client secret, and saves the settings here.
-              Requires your Stalwart account to have admin permissions.
+              Registers an OAuth client on the connected mail server, generates a client secret, and saves the settings here.
+              Requires your the mail server account to have admin permissions.
             </p>
           </div>
           <button
@@ -191,7 +191,7 @@ export function AuthTab() {
             <div className="px-5 py-4 border-b border-border">
               <h3 id="oauth-setup-title" className="text-base font-medium text-foreground">Auto-configure OAuth</h3>
               <p className="text-xs text-muted-foreground mt-1">
-                Verify the URLs below before continuing. The webmail and Stalwart can live on different domains.
+                Verify the URLs below before continuing. The webmail and the mail server can live on different domains.
               </p>
             </div>
             <div className="px-5 py-4 space-y-4">
@@ -209,7 +209,7 @@ export function AuthTab() {
                   className="w-full h-9 rounded-md border border-input bg-background px-2.5 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 <p className="text-[11px] text-muted-foreground mt-1">
-                  Used to register redirect URIs (one per locale: <code>{setupOrigin.trim().replace(/\/+$/, '') || 'https://…'}/&lt;locale&gt;/auth/callback</code>) on Stalwart.
+                  Used to register redirect URIs (one per locale: <code>{setupOrigin.trim().replace(/\/+$/, '') || 'https://…'}/&lt;locale&gt;/auth/callback</code>) on the mail server.
                 </p>
                 {!setupOriginValid && setupOrigin.length > 0 && (
                   <p className="text-[11px] text-destructive mt-1">Must be like https://host with no path.</p>
@@ -217,7 +217,7 @@ export function AuthTab() {
               </div>
               <div>
                 <label htmlFor="setup-issuer" className="block text-xs font-medium text-foreground mb-1">
-                  Stalwart issuer URL
+                  the mail server issuer URL
                 </label>
                 <input
                   id="setup-issuer"
@@ -229,7 +229,7 @@ export function AuthTab() {
                   className="w-full h-9 rounded-md border border-input bg-background px-2.5 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 <p className="text-[11px] text-muted-foreground mt-1">
-                  Where Stalwart serves <code>/.well-known/oauth-authorization-server</code>. Saved as <code>OAUTH_ISSUER_URL</code>. Pre-filled from your JMAP server URL.
+                  Where the mail server serves <code>/.well-known/oauth-authorization-server</code>. Saved as <code>OAUTH_ISSUER_URL</code>. Pre-filled from your JMAP server URL.
                 </p>
                 {!setupIssuerValid && setupIssuer.length > 0 && (
                   <p className="text-[11px] text-destructive mt-1">Must be like https://host with no path.</p>
