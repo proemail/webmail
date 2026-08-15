@@ -51,7 +51,7 @@ export default async function manifest(): Promise<ExtendedManifest> {
   const shortName = branded<string>("appShortName", "") || appName;
   const description =
     branded<string>("appDescription", "") ||
-    "A modern webmail client built for Stalwart Mail Server";
+    "Business email for your own domain — webmail, IMAP and SMTP.";
   const themeColor = branded<string>("pwaThemeColor", "") || "#ffffff";
   const backgroundColor = branded<string>("pwaBackgroundColor", "") || "#ffffff";
 
