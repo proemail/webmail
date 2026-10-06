@@ -724,6 +724,7 @@
     "source_copied": "Sorgente copiata negli appunti",
     "error_sending": "Impossibile inviare il messaggio",
     "error_deleting": "Impossibile eliminare il messaggio",
+    "error_archiving": "Impossibile archiviare il messaggio",
     "error_loading": "Impossibile caricare i messaggi",
     "new_email": "Nuovo messaggio",
     "new_email_from": "Da {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Il tag non può essere vuoto",
         "too_long": "Il tag deve essere di massimo {max} caratteri",
-        "invalid_chars": "Il tag deve contenere solo lettere, numeri e trattini"
+        "invalid_chars": "Il tag deve contenere solo lettere, numeri e trattini",
+        "invalid_format": "Il tag deve iniziare e terminare con una lettera o un numero"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Recenti",
     "section_uncategorized": "Altri",
     "no_templates": "Nessun modello",
+    "empty_hint": "Creane uno tuo o inizia con alcuni già pronti.",
+    "add_starters": "Aggiungi modelli iniziali",
     "no_results": "Nessun modello trovato",
     "fill_placeholders": "Compila i valori segnaposto",
     "enter_value": "Inserisci un valore...",
@@ -2573,7 +2577,10 @@
       "save": "Salva",
       "cancel": "Annulla",
       "delete_confirm": "Sei sicuro di voler eliminare questo evento?",
-      "color": "Colore"
+      "color": "Colore",
+      "error_end_before_start": "La fine non può precedere l'inizio",
+      "error_dates_required": "Inizio e fine sono obbligatori",
+      "error_invalid_link": "Inserisci un link completo che inizi con http:// o https://"
     },
     "participants": {
       "title": "Partecipanti",
@@ -3023,6 +3030,7 @@
     "grid_view": "Vista a griglia",
     "list_view": "Vista a elenco",
     "details": "Dettagli",
+    "details_empty": "Seleziona un file o una cartella per vederne i dettagli",
     "path": "Percorso",
     "preview": "Anteprima",
     "preview_error": "Caricamento dell'anteprima non riuscito",
@@ -3033,7 +3041,7 @@
     "move_error": "Spostamento non riuscito",
     "paste_success": "Incollato con successo",
     "paste_error": "Incollaggio non riuscito",
-    "new_text_file": "Nuovo file di testo",
+    "new_text_file": "Nuovo file",
     "file_name": "Nome del file",
     "retry": "Riprova",
     "refresh": "Aggiorna",

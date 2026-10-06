@@ -724,6 +724,7 @@
     "source_copied": "Bron gekopieerd naar klembord",
     "error_sending": "Kan e-mail niet verzenden",
     "error_deleting": "Kan e-mail niet verwijderen",
+    "error_archiving": "Kan e-mail niet archiveren",
     "error_loading": "Kan e-mails niet laden",
     "new_email": "Nieuwe e-mail",
     "new_email_from": "Van {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Tag mag niet leeg zijn",
         "too_long": "Tag mag maximaal {max} tekens bevatten",
-        "invalid_chars": "Tag mag alleen letters, cijfers en streepjes bevatten"
+        "invalid_chars": "Tag mag alleen letters, cijfers en streepjes bevatten",
+        "invalid_format": "Tag moet beginnen en eindigen met een letter of cijfer"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Recent",
     "section_uncategorized": "Overig",
     "no_templates": "Geen sjablonen",
+    "empty_hint": "Maak er zelf een, of begin met een paar kant-en-klare sjablonen.",
+    "add_starters": "Startsjablonen toevoegen",
     "no_results": "Geen sjablonen gevonden",
     "fill_placeholders": "Plaatshouderwaarden invullen",
     "enter_value": "Voer een waarde in...",
@@ -2573,7 +2577,10 @@
       "save": "Opslaan",
       "cancel": "Annuleren",
       "delete_confirm": "Weet je zeker dat je dit evenement wilt verwijderen?",
-      "color": "Kleur"
+      "color": "Kleur",
+      "error_end_before_start": "Einde kan niet vóór het begin liggen",
+      "error_dates_required": "Begin en einde zijn verplicht",
+      "error_invalid_link": "Voer een volledige link in die begint met http:// of https://"
     },
     "participants": {
       "title": "Deelnemers",
@@ -3023,6 +3030,7 @@
     "grid_view": "Rasterweergave",
     "list_view": "Lijstweergave",
     "details": "Details",
+    "details_empty": "Selecteer een bestand of map om de details te bekijken",
     "path": "Pad",
     "preview": "Voorbeeld",
     "preview_error": "Voorbeeld laden mislukt",
@@ -3033,7 +3041,7 @@
     "move_error": "Verplaatsen mislukt",
     "paste_success": "Succesvol geplakt",
     "paste_error": "Plakken mislukt",
-    "new_text_file": "Nieuw tekstbestand",
+    "new_text_file": "Nieuw bestand",
     "file_name": "Bestandsnaam",
     "retry": "Opnieuw proberen",
     "refresh": "Vernieuwen",

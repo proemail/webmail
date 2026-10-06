@@ -874,7 +874,103 @@ body[data-theme-skin="builtin-aurora-glass"] [role="menu"] [role="menuitem"]:foc
   background-color: rgba(139, 123, 255, 0.22) !important;
 }`;
 
+// Brand palette from the ProEmail site. Light mode puts lime on forest green
+// rather than using lime as the primary: #9fe870 on white is ~1.4:1 and the
+// app paints text and icons in the primary colour.
+const proemailCSS = `
+:root {
+  --color-border: #dfe3dc;
+  --color-input: #dfe3dc;
+  --color-ring: #163300;
+  --color-background: #ffffff;
+  --color-foreground: #0e0f0c;
+  --color-primary: #163300;
+  --color-primary-foreground: #9fe870;
+  --color-secondary: #e8ebe6;
+  --color-secondary-foreground: #0e0f0c;
+  --color-muted: #f2f4f0;
+  --color-muted-foreground: #5f6360;
+  --color-accent: #e2f6d5;
+  --color-accent-foreground: #163300;
+  --color-destructive: #d03238;
+  --color-destructive-foreground: #ffffff;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0e0f0c;
+  --color-sidebar: #f5f7f3;
+  --color-sidebar-foreground: #0e0f0c;
+  --color-sidebar-border: #dfe3dc;
+  --color-sidebar-accent: #e8ebe6;
+  --color-sidebar-accent-foreground: #0e0f0c;
+  --color-card: #ffffff;
+  --color-card-foreground: #0e0f0c;
+  --color-success: #054d28;
+  --color-success-foreground: #ffffff;
+  --color-warning: #ffd11a;
+  --color-warning-foreground: #4a3b1c;
+  --color-info: #163300;
+  --color-info-foreground: #9fe870;
+  --color-selection: #e2f6d5;
+  --color-selection-foreground: #163300;
+  --color-unread: #2ead4b;
+  --color-chart-1: #2ead4b;
+  --color-chart-2: #38c8ff;
+  --color-chart-3: #ffd11a;
+  --color-chart-4: #d03238;
+  --color-chart-5: #ffc091;
+}
+.dark {
+  --color-border: #2a2d26;
+  --color-input: #2a2d26;
+  --color-ring: #9fe870;
+  --color-background: #0e0f0c;
+  --color-foreground: #f2f4f0;
+  --color-primary: #9fe870;
+  --color-primary-foreground: #0e0f0c;
+  --color-secondary: #1c1e19;
+  --color-secondary-foreground: #f2f4f0;
+  --color-muted: #1c1e19;
+  --color-muted-foreground: #a3a79f;
+  --color-accent: #163300;
+  --color-accent-foreground: #cdffad;
+  --color-destructive: #d03238;
+  --color-destructive-foreground: #ffffff;
+  --color-popover: #171915;
+  --color-popover-foreground: #f2f4f0;
+  --color-sidebar: #0e0f0c;
+  --color-sidebar-foreground: #f2f4f0;
+  --color-sidebar-border: #2a2d26;
+  --color-sidebar-accent: #1c1e19;
+  --color-sidebar-accent-foreground: #f2f4f0;
+  --color-card: #151712;
+  --color-card-foreground: #f2f4f0;
+  --color-success: #2ead4b;
+  --color-success-foreground: #0e0f0c;
+  --color-warning: #ffd11a;
+  --color-warning-foreground: #0e0f0c;
+  --color-info: #9fe870;
+  --color-info-foreground: #0e0f0c;
+  --color-selection: #163300;
+  --color-selection-foreground: #cdffad;
+  --color-unread: #9fe870;
+  --color-chart-1: #9fe870;
+  --color-chart-2: #38c8ff;
+  --color-chart-3: #ffd11a;
+  --color-chart-4: #ff6b6f;
+  --color-chart-5: #ffc091;
+}`;
+
 export const BUILTIN_THEMES: InstalledTheme[] = [
+  {
+    id: 'builtin-proemail',
+    name: 'ProEmail',
+    version: '1.0.0',
+    author: 'Built-in',
+    description: 'The ProEmail brand palette - forest green and lime on white, lime on ink in dark mode',
+    css: proemailCSS,
+    variants: ['light', 'dark'],
+    enabled: true,
+    builtIn: true,
+  },
   {
     id: 'builtin-qui',
     name: 'Qui',

@@ -572,6 +572,8 @@ export function EmailList({
               await batchArchive(client);
             } catch (error) {
               console.error('Failed to batch archive:', error);
+              const { toast } = await import('sonner');
+              toast.error(error instanceof Error ? error.message : 'Failed to archive emails');
             }
           }}
           onBatchMoveToMailbox={(mailboxId) => client && batchMoveToMailbox(client, mailboxId)}

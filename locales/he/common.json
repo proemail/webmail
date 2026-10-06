@@ -689,6 +689,7 @@
     "source_copied": "המקור הועתק ללוח",
     "error_sending": "שליחת האימייל נכשלה",
     "error_deleting": "מחיקת האימייל נכשלה",
+    "error_archiving": "העברת האימייל לארכיון נכשלה",
     "error_loading": "טעינת האימייל נכשלה",
     "new_email": "מייל חדש",
     "new_email_from": "מ-{sender}",
@@ -2068,7 +2069,8 @@
       "validation": {
         "empty": "התג לא יכול להיות ריק",
         "too_long": "התג חייב להיות{max}תווים או פחות",
-        "invalid_chars": "התג חייב להכיל רק אותיות, מספרים ומקפים"
+        "invalid_chars": "התג חייב להכיל רק אותיות, מספרים ומקפים",
+        "invalid_format": "התג חייב להתחיל ולהסתיים באות או במספר"
       }
     },
     "badge": {
@@ -2088,6 +2090,8 @@
     "section_recent": "לאחרונה",
     "section_uncategorized": "אחר",
     "no_templates": "עדיין אין תבניות",
+    "empty_hint": "צרו תבנית משלכם, או התחילו עם כמה תבניות מוכנות.",
+    "add_starters": "הוספת תבניות מוכנות",
     "no_results": "לא נמצאו תבניות",
     "fill_placeholders": "מלא ערכי מציין מיקום",
     "enter_value": "הזן ערך...",
@@ -2501,7 +2505,10 @@
       "save": "שמור",
       "cancel": "לְבַטֵל",
       "delete_confirm": "האם אתה בטוח שברצונך למחוק את האירוע הזה?",
-      "color": "צבע"
+      "color": "צבע",
+      "error_end_before_start": "הסיום לא יכול להיות לפני ההתחלה",
+      "error_dates_required": "נדרשים התחלה וסיום",
+      "error_invalid_link": "הזינו קישור מלא שמתחיל ב-http:// או https://"
     },
     "participants": {
       "title": "משתתפים",
@@ -2950,6 +2957,7 @@
     "grid_view": "תצוגת רשת",
     "list_view": "תצוגת רשימה",
     "details": "פרטים",
+    "details_empty": "בחרו קובץ או תיקיה כדי לראות את הפרטים",
     "path": "נתיב",
     "preview": "תצוגה מקדימה",
     "preview_error": "טעינת התצוגה המקדימה נכשלה",
@@ -2960,7 +2968,7 @@
     "move_error": "לא הצליח לזוז",
     "paste_success": "הודבק בהצלחה",
     "paste_error": "ההדבקה נכשלה",
-    "new_text_file": "קובץ טקסט חדש",
+    "new_text_file": "קובץ חדש",
     "file_name": "שם הקובץ",
     "retry": "נסה שוב",
     "refresh": "רענן",

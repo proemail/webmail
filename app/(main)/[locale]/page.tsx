@@ -33,6 +33,7 @@ import { debug } from "@/lib/debug";
 import { playNotificationSound } from "@/lib/notification-sound";
 import { cn } from "@/lib/utils";
 import { localizeMailboxName } from "@/lib/mailbox-label";
+import { findArchiveMailbox, createArchiveMailbox } from "@/lib/archive-mailbox";
 import {
   ErrorBoundary,
   SidebarErrorFallback,
@@ -580,6 +581,7 @@ export default function Home() {
           await batchArchive(client);
         } catch (error) {
           console.error("Failed to batch archive:", error);
+          toast.error(t('notifications.error_archiving'));
         }
       } else if (selectedEmail) {
         handleArchive();
@@ -1586,13 +1588,17 @@ export default function Home() {
         : fetchMailboxes(client);
 
     const currentMailboxes = readMailboxes();
-
-    const archiveMailbox = currentMailboxes.find(m => m.role === "archive" || m.name.toLowerCase() === "archive");
-    if (!archiveMailbox) return;
-
     const { archiveMode } = useSettingsStore.getState();
 
     try {
+      let archiveMailbox = findArchiveMailbox(currentMailboxes);
+      if (!archiveMailbox) {
+        const created = await createArchiveMailbox(archiveClient, archiveAccountId);
+        // Re-read so the move below sees the folder as the store knows it.
+        await refreshMailboxes();
+        archiveMailbox = findArchiveMailbox(readMailboxes()) ?? created;
+      }
+
       if (archiveMode === 'single') {
         await moveThreadToMailbox(client, emailToArchive.id, archiveMailbox.id);
       } else {
@@ -1633,6 +1639,7 @@ export default function Home() {
       void refreshMailboxes();
     } catch (error) {
       console.error("Failed to archive email:", error);
+      toast.error(t('notifications.error_archiving'));
     }
   };
 

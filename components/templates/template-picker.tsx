@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { X, Search, Star, FileText } from 'lucide-react';
+import { X, Search, Star, FileText, Settings2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useTemplateStore } from '@/stores/template-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -12,7 +13,9 @@ import {
   getPlaceholdersFromTemplate,
   getAutoFilledPlaceholders,
 } from '@/lib/template-utils';
+import { STARTER_TEMPLATES } from '@/lib/starter-templates';
 import { PlaceholderFillModal } from './placeholder-fill-modal';
+import { TemplateManagerModal } from './template-manager-modal';
 import type { EmailTemplate } from '@/lib/template-types';
 
 interface TemplatePickerProps {
@@ -23,18 +26,20 @@ interface TemplatePickerProps {
 
 export function TemplatePicker({ isOpen, onClose, onSelect }: TemplatePickerProps) {
   const t = useTranslations('templates');
+  const tSettings = useTranslations('settings.templates');
   const locale = useLocale();
 
-  const { templates, getFavorites, getRecent, getTemplatesByCategory, searchTemplates, recordUsage } =
+  const { templates, addTemplate, getFavorites, getRecent, getTemplatesByCategory, searchTemplates, recordUsage } =
     useTemplateStore();
   const { primaryIdentity } = useAuthStore();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState<EmailTemplate | null>(null);
   const [showFillModal, setShowFillModal] = useState(false);
+  const [showManager, setShowManager] = useState(false);
 
   const modalRef = useFocusTrap({
-    isActive: isOpen && !showFillModal,
+    isActive: isOpen && !showFillModal && !showManager,
     onEscape: onClose,
     restoreFocus: true,
   });
@@ -102,7 +107,7 @@ export function TemplatePicker({ isOpen, onClose, onSelect }: TemplatePickerProp
   const renderSection = (title: string, items: EmailTemplate[]) => {
     if (items.length === 0) return null;
     return (
-      <div className="mb-4">
+      <div key={title} className="mb-4">
         <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 px-3">
           {title}
         </h3>
@@ -161,11 +166,20 @@ export function TemplatePicker({ isOpen, onClose, onSelect }: TemplatePickerProp
             </div>
           </div>
 
-          <div className="overflow-y-auto max-h-[calc(70vh-120px)] p-2">
+          <div className="overflow-y-auto max-h-[calc(70vh-170px)] p-2">
             {templates.length === 0 && (
-              <div className="flex flex-col items-center py-8 text-muted-foreground">
+              <div className="flex flex-col items-center py-8 px-4 text-center text-muted-foreground">
                 <FileText className="w-8 h-8 mb-2 opacity-40" />
-                <p className="text-sm">{t('no_templates')}</p>
+                <p className="text-sm font-medium text-foreground">{t('no_templates')}</p>
+                <p className="text-sm mt-1">{t('empty_hint')}</p>
+                <div className="flex flex-wrap justify-center gap-2 mt-4">
+                  <Button size="sm" onClick={() => STARTER_TEMPLATES.forEach((starter) => addTemplate(starter))}>
+                    {t('add_starters')}
+                  </Button>
+                  <Button size="sm" variant="outline" onClick={() => setShowManager(true)}>
+                    {tSettings('add')}
+                  </Button>
+                </div>
               </div>
             )}
 
@@ -193,8 +207,30 @@ export function TemplatePicker({ isOpen, onClose, onSelect }: TemplatePickerProp
               </>
             )}
           </div>
+
+          {templates.length > 0 && (
+            <div className="px-2 py-2 border-t border-border">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowManager(true)}
+                className="w-full justify-start text-muted-foreground"
+              >
+                <Settings2 className="w-4 h-4 me-2" />
+                {tSettings('manage')}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
+
+      {showManager && (
+        <TemplateManagerModal
+          isOpen
+          startCreating={templates.length === 0}
+          onClose={() => setShowManager(false)}
+        />
+      )}
 
       {showFillModal && selectedTemplate && (
         <PlaceholderFillModal

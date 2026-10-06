@@ -724,6 +724,7 @@
     "source_copied": "Zdrojový kód zkopírován do schránky",
     "error_sending": "Odeslání zprávy selhalo",
     "error_deleting": "Odstranění zprávy selhalo",
+    "error_archiving": "Archivace zprávy selhala",
     "error_loading": "Načtení zprávy selhalo",
     "new_email": "Nová zpráva",
     "new_email_from": "Od {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Štítek nesmí být prázdný",
         "too_long": "Štítek může mít maximálně {max} znaků",
-        "invalid_chars": "Štítek může obsahovat pouze písmena, číslice a pomlčky"
+        "invalid_chars": "Štítek může obsahovat pouze písmena, číslice a pomlčky",
+        "invalid_format": "Štítek musí začínat a končit písmenem nebo číslicí"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Nedávné",
     "section_uncategorized": "Ostatní",
     "no_templates": "Zatím žádné šablony",
+    "empty_hint": "Vytvořte si vlastní, nebo začněte s několika připravenými.",
+    "add_starters": "Přidat výchozí šablony",
     "no_results": "Nenalezeny žádné šablony",
     "fill_placeholders": "Vyplnit hodnoty proměnných",
     "enter_value": "Zadejte hodnotu...",
@@ -2573,7 +2577,10 @@
       "save": "Uložit",
       "cancel": "Zrušit",
       "delete_confirm": "Opravdu chcete odstranit tuto událost?",
-      "color": "Barva"
+      "color": "Barva",
+      "error_end_before_start": "Konec nemůže být před začátkem",
+      "error_dates_required": "Začátek a konec jsou povinné",
+      "error_invalid_link": "Zadejte celý odkaz začínající http:// nebo https://"
     },
     "participants": {
       "title": "Účastníci",
@@ -3023,6 +3030,7 @@
     "grid_view": "Zobrazení mřížky",
     "list_view": "Zobrazení seznamu",
     "details": "Podrobnosti",
+    "details_empty": "Vyberte soubor nebo složku pro zobrazení podrobností",
     "path": "Cesta",
     "preview": "Náhled",
     "preview_error": "Náhled se nepodařilo načíst",
@@ -3033,7 +3041,7 @@
     "move_error": "Přesun selhal",
     "paste_success": "Úspěšně vloženo",
     "paste_error": "Vložení selhalo",
-    "new_text_file": "Nový textový soubor",
+    "new_text_file": "Nový soubor",
     "file_name": "Název souboru",
     "retry": "Opakovat",
     "refresh": "Obnovit",

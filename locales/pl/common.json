@@ -724,6 +724,7 @@
     "source_copied": "Źródło skopiowane do schowka",
     "error_sending": "Nie udało się wysłać wiadomości",
     "error_deleting": "Nie udało się usunąć wiadomości",
+    "error_archiving": "Nie udało się zarchiwizować wiadomości",
     "error_loading": "Nie udało się załadować wiadomości",
     "new_email": "Nowa wiadomość",
     "new_email_from": "Od {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Tag nie może być pusty",
         "too_long": "Tag może mieć maksymalnie {max} znaków",
-        "invalid_chars": "Tag może zawierać tylko litery, cyfry i myślniki"
+        "invalid_chars": "Tag może zawierać tylko litery, cyfry i myślniki",
+        "invalid_format": "Tag musi zaczynać się i kończyć literą lub cyfrą"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Ostatnie",
     "section_uncategorized": "Inne",
     "no_templates": "Nie ma jeszcze szablonów",
+    "empty_hint": "Utwórz własny lub zacznij od kilku gotowych.",
+    "add_starters": "Dodaj szablony startowe",
     "no_results": "Nie znaleziono szablonów",
     "fill_placeholders": "Uzupełnij wartości zmiennych",
     "enter_value": "Wpisz wartość...",
@@ -2573,7 +2577,10 @@
       "save": "Zapisz",
       "cancel": "Anuluj",
       "delete_confirm": "Czy na pewno chcesz usunąć to wydarzenie?",
-      "color": "Kolor"
+      "color": "Kolor",
+      "error_end_before_start": "Koniec nie może być wcześniejszy niż początek",
+      "error_dates_required": "Początek i koniec są wymagane",
+      "error_invalid_link": "Wpisz pełny link zaczynający się od http:// lub https://"
     },
     "participants": {
       "title": "Uczestnicy",
@@ -3023,6 +3030,7 @@
     "grid_view": "Widok siatki",
     "list_view": "Widok listy",
     "details": "Szczegóły",
+    "details_empty": "Wybierz plik lub folder, aby zobaczyć szczegóły",
     "path": "Ścieżka",
     "preview": "Podgląd",
     "preview_error": "Nie udało się załadować podglądu",
@@ -3033,7 +3041,7 @@
     "move_error": "Nie udało się przenieść",
     "paste_success": "Wklejono pomyślnie",
     "paste_error": "Nie udało się wkleić",
-    "new_text_file": "Nowy plik tekstowy",
+    "new_text_file": "Nowy plik",
     "file_name": "Nazwa pliku",
     "retry": "Ponów",
     "refresh": "Odśwież",

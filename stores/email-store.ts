@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { Email, Mailbox, StateChange, ScheduledEmail, SendEmailResult, isUnifiedMailboxId, isCrossViewId } from "@/lib/jmap/types";
 import type { UnifiedMailboxRole, CrossView } from "@/lib/jmap/types";
+import { findArchiveMailbox, createArchiveMailbox } from "@/lib/archive-mailbox";
 import type { IJMAPClient } from "@/lib/jmap/client-interface";
 import { useSettingsStore } from "@/stores/settings-store";
 import { useCalendarStore } from "@/stores/calendar-store";
@@ -2324,18 +2325,18 @@ export const useEmailStore = create<EmailStore>((set, get) => ({
     const mailboxes = resolveActionMailboxes();
     if (selectedEmailIds.size === 0) return;
 
-    const archiveMailbox = mailboxes.find(m => m.role === 'archive' || m.name.toLowerCase() === 'archive');
-    if (!archiveMailbox) return;
-
     const mode = useSettingsStore.getState().archiveMode;
-    const archiveId = archiveMailbox.originalId || archiveMailbox.id;
 
     const selected = emails.filter(e => selectedEmailIds.has(e.id));
     if (selected.length === 0) return;
 
     set({ isLoading: true, error: null });
     try {
-      await resolveActionClient(client).batchArchiveEmails(
+      const actionClient = resolveActionClient(client);
+      const archiveMailbox = findArchiveMailbox(mailboxes) ?? await createArchiveMailbox(actionClient);
+      const archiveId = archiveMailbox.originalId || archiveMailbox.id;
+
+      await actionClient.batchArchiveEmails(
         selected.map(e => ({ id: e.id, receivedAt: e.receivedAt })),
         archiveId,
         mode,

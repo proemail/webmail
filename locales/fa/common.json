@@ -724,6 +724,7 @@
     "source_copied": "منبع در کلیپ‌بورد کپی شد",
     "error_sending": "ارسال ایمیل ناموفق بود",
     "error_deleting": "حذف ایمیل ناموفق بود",
+    "error_archiving": "بایگانی ایمیل ناموفق بود",
     "error_loading": "بارگذاری ایمیل‌ها ناموفق بود",
     "new_email": "ایمیل جدید",
     "new_email_from": "از {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "برچسب نمی‌تواند خالی باشد",
         "too_long": "حداکثر {max} کاراکتر",
-        "invalid_chars": "فقط حروف، اعداد و خط تیره"
+        "invalid_chars": "فقط حروف، اعداد و خط تیره",
+        "invalid_format": "برچسب باید با حرف یا عدد شروع و تمام شود"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "اخیر",
     "section_uncategorized": "سایر",
     "no_templates": "هنوز قالبی نیست",
+    "empty_hint": "قالب خودتان را بسازید یا با چند قالب آماده شروع کنید.",
+    "add_starters": "افزودن قالب‌های آماده",
     "no_results": "قالبی یافت نشد",
     "fill_placeholders": "پر کردن مقادیر جایگزین",
     "enter_value": "یک مقدار وارد کنید...",
@@ -2573,7 +2577,10 @@
       "save": "ذخیره",
       "cancel": "انصراف",
       "delete_confirm": "آیا از حذف این رویداد اطمینان دارید؟",
-      "color": "رنگ"
+      "color": "رنگ",
+      "error_end_before_start": "پایان نمی‌تواند قبل از شروع باشد",
+      "error_dates_required": "شروع و پایان الزامی است",
+      "error_invalid_link": "یک پیوند کامل وارد کنید که با http:// یا https:// شروع شود"
     },
     "participants": {
       "title": "شرکت‌کنندگان",
@@ -3048,6 +3055,7 @@
     "grid_view": "نمای شبکه‌ای",
     "list_view": "نمای لیست",
     "details": "جزئیات",
+    "details_empty": "برای دیدن جزئیات، یک فایل یا پوشه انتخاب کنید",
     "path": "مسیر",
     "preview": "پیش‌نمایش",
     "preview_error": "بارگذاری پیش‌نمایش ناموفق بود",
@@ -3058,7 +3066,7 @@
     "move_error": "انتقال ناموفق بود",
     "paste_success": "با موفقیت چسبانده شد",
     "paste_error": "چسباندن ناموفق بود",
-    "new_text_file": "فایل متنی جدید",
+    "new_text_file": "فایل جدید",
     "file_name": "نام فایل",
     "retry": "تلاش مجدد",
     "refresh": "بازنشانی",

@@ -30,6 +30,11 @@ function makeMockClient(initial: FileNode[] = []) {
       return { ...node };
     },
     async createFileNode(name: string, blobId: string, type: string, size: number, parentId: string | null) {
+      // Mirror Stalwart: a second node with the same name in a folder is
+      // rejected (notCreated: alreadyExists).
+      if (nodes.some(n => (n.parentId ?? null) === parentId && n.name === name)) {
+        throw new Error('alreadyExists');
+      }
       const node: FileNode = { id: `n${++seq}`, parentId, name, type, blobId, size, created: now(), updated: now() };
       nodes.push(node);
       return { ...node };
@@ -371,5 +376,58 @@ describe('file-store hierarchy (issue #379)', () => {
 
     await useFileStore.getState().deleteResource('Stuff');
     expect(client._nodes()).toHaveLength(0);
+  });
+
+  it('pastes a copy next to its original under a new name', async () => {
+    const client = makeMockClient([file('notes', 'Notes.md', null)]);
+    useFileStore.getState().initClient(client);
+    await useFileStore.getState().navigate(null);
+
+    useFileStore.getState().copyResources(['Notes.md']);
+    await useFileStore.getState().pasteResources();
+    await useFileStore.getState().pasteResources();
+
+    const names = client._nodes().map(n => n.name).sort();
+    expect(names).toEqual(['Notes (copy 2).md', 'Notes (copy).md', 'Notes.md']);
+  });
+
+  it('pastes a copy into another folder under its original name', async () => {
+    const client = makeMockClient([
+      dir('stuff', 'Stuff', null),
+      file('notes', 'Notes.md', null),
+    ]);
+    useFileStore.getState().initClient(client);
+    await useFileStore.getState().navigate(null);
+
+    useFileStore.getState().copyResources(['Notes.md']);
+    await useFileStore.getState().navigate('stuff', 'Stuff');
+    await useFileStore.getState().pasteResources();
+
+    const copy = client._nodes().find(n => n.parentId === 'stuff');
+    expect(copy?.name).toBe('Notes.md');
+  });
+
+  it('duplicates the same file twice without a name clash', async () => {
+    const client = makeMockClient([file('notes', 'Notes.md', null)]);
+    useFileStore.getState().initClient(client);
+    await useFileStore.getState().navigate(null);
+
+    await useFileStore.getState().duplicateResource('Notes.md');
+    await useFileStore.getState().duplicateResource('Notes.md');
+
+    const names = client._nodes().map(n => n.name).sort();
+    expect(names).toEqual(['Notes (copy 2).md', 'Notes (copy).md', 'Notes.md']);
+  });
+
+  it('types a new file by its extension instead of assuming plain text', async () => {
+    const client = makeMockClient();
+    useFileStore.getState().initClient(client);
+    await useFileStore.getState().navigate(null);
+
+    await useFileStore.getState().createTextFile('report.pdf');
+    await useFileStore.getState().createTextFile('notes.txt');
+
+    const types = Object.fromEntries(client._nodes().map(n => [n.name, n.type]));
+    expect(types).toEqual({ 'report.pdf': 'application/pdf', 'notes.txt': 'text/plain' });
   });
 });

@@ -12,6 +12,7 @@ import { toast } from "@/stores/toast-store";
 import { useProTabStore, type ProEmailTabData, type ProReplyContext } from "@/stores/pro-tab-store";
 import type { Email } from "@/lib/jmap/types";
 import { buildReplySubject, buildForwardSubject } from "@/lib/subject-prefix";
+import { findArchiveMailbox, createArchiveMailbox } from "@/lib/archive-mailbox";
 
 interface ProEmailTabBodyProps {
   tabId: string;
@@ -56,6 +57,7 @@ export function ProEmailTabBody({ tabId, data }: ProEmailTabBodyProps) {
   const moveToMailbox = useEmailStore((s) => s.moveToMailbox);
   const setEmailKeywordsLocal = useEmailStore((s) => s.setEmailKeywordsLocal);
   const mailboxes = useEmailStore((s) => s.mailboxes);
+  const fetchMailboxes = useEmailStore((s) => s.fetchMailboxes);
   const settingsKeywords = useSettingsStore((s) => s.emailKeywords);
   const identities = useIdentityStore((s) => s.identities);
 
@@ -148,16 +150,21 @@ export function ProEmailTabBody({ tabId, data }: ProEmailTabBodyProps) {
 
   const handleArchive = useCallback(async () => {
     if (!client || !email) return;
-    const archiveMb = mailboxes.find((m) => m.role === 'archive');
-    if (!archiveMb) return;
     try {
+      let archiveMb = findArchiveMailbox(mailboxes);
+      if (!archiveMb) {
+        const created = await createArchiveMailbox(client);
+        await fetchMailboxes(client);
+        archiveMb = findArchiveMailbox(useEmailStore.getState().mailboxes) ?? created;
+      }
       await moveToMailbox(client, email.id, archiveMb.id);
       toast.success(tNotifications('email_archived'));
       closeTab(tabId);
     } catch (err) {
       console.error('Archive failed:', err);
+      toast.error(tNotifications('error_archiving'));
     }
-  }, [client, email, mailboxes, moveToMailbox, closeTab, tabId, tNotifications]);
+  }, [client, email, mailboxes, moveToMailbox, fetchMailboxes, closeTab, tabId, tNotifications]);
 
   const handleToggleStar = useCallback(async () => {
     if (!client || !email) return;

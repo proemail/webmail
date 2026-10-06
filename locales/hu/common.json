@@ -724,6 +724,7 @@
     "source_copied": "Forrás a vágólapra másolva",
     "error_sending": "Nem sikerült elküldeni az e-mailt",
     "error_deleting": "Nem sikerült törölni az e-mailt",
+    "error_archiving": "Nem sikerült archiválni az e-mailt",
     "error_loading": "Nem sikerült betölteni az e-maileket",
     "new_email": "Új e-mail",
     "new_email_from": "{sender} feladótól",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "A címke nem lehet üres",
         "too_long": "A címke legfeljebb {max} karakter lehet",
-        "invalid_chars": "A címke csak betűket, számokat és kötőjeleket tartalmazhat"
+        "invalid_chars": "A címke csak betűket, számokat és kötőjeleket tartalmazhat",
+        "invalid_format": "A címkének betűvel vagy számmal kell kezdődnie és végződnie"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Legutóbbi",
     "section_uncategorized": "Egyéb",
     "no_templates": "Még nincsenek sablonok",
+    "empty_hint": "Hozzon létre sajátot, vagy kezdjen néhány kész sablonnal.",
+    "add_starters": "Kezdősablonok hozzáadása",
     "no_results": "Nincs találat",
     "fill_placeholders": "Helyettesítő értékek kitöltése",
     "enter_value": "Érték megadása...",
@@ -2573,7 +2577,10 @@
       "save": "Mentés",
       "cancel": "Mégse",
       "delete_confirm": "Biztosan törölni szeretnéd ezt az eseményt?",
-      "color": "Szín"
+      "color": "Szín",
+      "error_end_before_start": "A befejezés nem lehet korábbi a kezdésnél",
+      "error_dates_required": "A kezdés és a befejezés megadása kötelező",
+      "error_invalid_link": "Adjon meg teljes hivatkozást, amely http:// vagy https:// előtaggal kezdődik"
     },
     "participants": {
       "title": "Résztvevők",
@@ -3048,6 +3055,7 @@
     "grid_view": "Rács nézet",
     "list_view": "Lista nézet",
     "details": "Részletek",
+    "details_empty": "Válasszon egy fájlt vagy mappát a részletek megtekintéséhez",
     "path": "Útvonal",
     "preview": "Előnézet",
     "preview_error": "Nem sikerült betölteni az előnézetet",
@@ -3058,7 +3066,7 @@
     "move_error": "Nem sikerült áthelyezni",
     "paste_success": "Sikeresen beillesztve",
     "paste_error": "Nem sikerült beilleszteni",
-    "new_text_file": "Új szöveges fájl",
+    "new_text_file": "Új fájl",
     "file_name": "Fájl neve",
     "retry": "Újra",
     "refresh": "Frissítés",

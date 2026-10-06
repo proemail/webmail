@@ -65,35 +65,24 @@ export function SubAddressHelper({
     }
   }, [isOpen]);
 
+  const validationMessage = (value: string): string | null => {
+    switch (getTagValidationError(value)) {
+      case 'EMPTY': return t('validation.empty');
+      case 'TOO_LONG': return t('validation.too_long', { max: MAX_TAG_LENGTH });
+      case 'INVALID_CHARS': return t('validation.invalid_chars');
+      case 'INVALID_FORMAT': return t('validation.invalid_format');
+      default: return null;
+    }
+  };
+
   const handleTagChange = (value: string) => {
     setTag(value);
-    const errorCode = getTagValidationError(value);
-
-    // Translate error code to localized message
-    let errorMessage: string | null = null;
-    if (errorCode === 'EMPTY') {
-      errorMessage = t('validation.empty');
-    } else if (errorCode === 'TOO_LONG') {
-      errorMessage = t('validation.too_long', { max: MAX_TAG_LENGTH });
-    } else if (errorCode === 'INVALID_CHARS') {
-      errorMessage = t('validation.invalid_chars');
-    }
-
-    setError(errorMessage);
+    setError(validationMessage(value));
   };
 
   const handleSelectTag = (selectedTag: string) => {
-    const errorCode = getTagValidationError(selectedTag);
-    if (errorCode) {
-      // Translate error code to localized message
-      let errorMessage: string | null = null;
-      if (errorCode === 'EMPTY') {
-        errorMessage = t('validation.empty');
-      } else if (errorCode === 'TOO_LONG') {
-        errorMessage = t('validation.too_long', { max: MAX_TAG_LENGTH });
-      } else if (errorCode === 'INVALID_CHARS') {
-        errorMessage = t('validation.invalid_chars');
-      }
+    const errorMessage = validationMessage(selectedTag);
+    if (errorMessage) {
       setError(errorMessage);
       return;
     }

@@ -724,6 +724,7 @@
     "source_copied": "Código fuente copiado al portapapeles",
     "error_sending": "Error al enviar el correo",
     "error_deleting": "Error al eliminar el correo",
+    "error_archiving": "Error al archivar el correo",
     "error_loading": "Error al cargar los correos",
     "new_email": "Nuevo correo",
     "new_email_from": "De {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "La etiqueta no puede estar vacía",
         "too_long": "La etiqueta debe tener {max} caracteres o menos",
-        "invalid_chars": "La etiqueta debe contener solo letras, números y guiones"
+        "invalid_chars": "La etiqueta debe contener solo letras, números y guiones",
+        "invalid_format": "La etiqueta debe empezar y terminar con una letra o un número"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Recientes",
     "section_uncategorized": "Otros",
     "no_templates": "Sin plantillas",
+    "empty_hint": "Crea la tuya o empieza con algunas ya preparadas.",
+    "add_starters": "Añadir plantillas iniciales",
     "no_results": "No se encontraron plantillas",
     "fill_placeholders": "Completar valores de marcadores",
     "enter_value": "Introduce un valor...",
@@ -2573,7 +2577,10 @@
       "save": "Guardar",
       "cancel": "Cancelar",
       "delete_confirm": "¿Está seguro de que desea eliminar este evento?",
-      "color": "Color"
+      "color": "Color",
+      "error_end_before_start": "El fin no puede ser anterior al inicio",
+      "error_dates_required": "El inicio y el fin son obligatorios",
+      "error_invalid_link": "Introduce un enlace completo que empiece por http:// o https://"
     },
     "participants": {
       "title": "Participantes",
@@ -3023,6 +3030,7 @@
     "grid_view": "Vista de cuadrícula",
     "list_view": "Vista de lista",
     "details": "Detalles",
+    "details_empty": "Selecciona un archivo o carpeta para ver sus detalles",
     "path": "Ruta",
     "preview": "Vista previa",
     "preview_error": "Error al cargar la vista previa",
@@ -3033,7 +3041,7 @@
     "move_error": "Error al mover",
     "paste_success": "Pegado correctamente",
     "paste_error": "Error al pegar",
-    "new_text_file": "Nuevo archivo de texto",
+    "new_text_file": "Nuevo archivo",
     "file_name": "Nombre del archivo",
     "retry": "Reintentar",
     "refresh": "Actualizar",

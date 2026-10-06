@@ -112,8 +112,10 @@ export default function FilesPage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [previewFile, setPreviewFile] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [detailName, setDetailName] = useState<string | null>(null);
 
+  // The details panel follows the selection, so the toolbar Info button always
+  // has something to show once a single item is selected.
+  const detailName = selectedResources.size === 1 ? selectedResources.values().next().value ?? null : null;
   const detailResource = detailName ? resources.find(r => r.name === detailName) || null : null;
 
   // Check auth on mount – skip when already authenticated so that navigating
@@ -393,9 +395,9 @@ export default function FilesPage() {
   }, [addRecentFile, findResourceId]);
 
   const handleShowDetails = useCallback((name: string) => {
-    setDetailName(name);
+    selectResource(name);
     setShowDetails(true);
-  }, []);
+  }, [selectResource]);
 
   const handleToggleDetails = useCallback(() => {
     setShowDetails(v => !v);

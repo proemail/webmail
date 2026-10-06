@@ -1925,14 +1925,24 @@ export function FileBrowser({
         </div>
 
         {/* Details sidebar */}
-        {showDetails && detailResource && (
-          <div role="complementary" aria-label={t("details")} className="w-64 border-s border-border bg-background p-4 overflow-y-auto shrink-0 hidden md:block">
+        {/* A sidebar from md up; below that there is no room beside the list,
+            so it becomes a sheet over the bottom of the file area. */}
+        {showDetails && (
+          <div
+            role="complementary"
+            aria-label={t("details")}
+            className="absolute inset-x-0 bottom-0 z-20 max-h-[60%] rounded-t-xl border-t border-border shadow-lg bg-background p-4 overflow-y-auto shrink-0 md:static md:z-auto md:max-h-none md:w-64 md:rounded-none md:border-t-0 md:border-s md:shadow-none"
+          >
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-medium">{t("details")}</h3>
               <button onClick={onToggleDetails} className="text-muted-foreground hover:text-foreground">
                 <X className="w-4 h-4" />
               </button>
             </div>
+            {!detailResource ? (
+              <p className="text-sm text-muted-foreground">{t("details_empty")}</p>
+            ) : (
+            <>
             <div className="flex flex-col items-center gap-3 mb-4">
               {detailResource.isDirectory
                 ? <Folder className="w-12 h-12 text-blue-500" />
@@ -1942,7 +1952,7 @@ export function FileBrowser({
             <dl className="space-y-3 text-sm">
               <div>
                 <dt className="text-muted-foreground text-xs">{t("type")}</dt>
-                <dd>{detailResource.isDirectory ? t("folder") : (detailResource.contentType || t("file"))}</dd>
+                <dd className="break-all">{detailResource.isDirectory ? t("folder") : (detailResource.contentType || t("file"))}</dd>
               </div>
               {!detailResource.isDirectory && (
                 <div>
@@ -1963,6 +1973,8 @@ export function FileBrowser({
                 </dd>
               </div>
             </dl>
+            </>
+            )}
           </div>
         )}
       </div>

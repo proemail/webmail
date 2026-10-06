@@ -73,7 +73,7 @@ export interface IJMAPClient {
   // ── Mailboxes ─────────────────────────────────────────────────
   getMailboxes(accountId?: string): Promise<Mailbox[]>;
   getAllMailboxes(): Promise<Mailbox[]>;
-  createMailbox(name: string, parentId?: string, accountId?: string): Promise<Mailbox>;
+  createMailbox(name: string, parentId?: string, accountId?: string, role?: string): Promise<Mailbox>;
   updateMailbox(mailboxId: string, changes: { name?: string; parentId?: string | null; role?: string | null; sortOrder?: number }): Promise<void>;
   deleteMailbox(mailboxId: string): Promise<void>;
 

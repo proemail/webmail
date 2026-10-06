@@ -724,6 +724,7 @@
     "source_copied": "Código-fonte copiado para a área de transferência",
     "error_sending": "Falha ao enviar e-mail",
     "error_deleting": "Falha ao excluir e-mail",
+    "error_archiving": "Falha ao arquivar e-mail",
     "error_loading": "Falha ao carregar e-mails",
     "new_email": "Novo e-mail",
     "new_email_from": "De {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "A tag não pode estar vazia",
         "too_long": "A tag deve ter no máximo {max} caracteres",
-        "invalid_chars": "A tag deve conter apenas letras, números e hífens"
+        "invalid_chars": "A tag deve conter apenas letras, números e hífens",
+        "invalid_format": "A tag deve começar e terminar com uma letra ou número"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Recentes",
     "section_uncategorized": "Outros",
     "no_templates": "Sem modelos",
+    "empty_hint": "Crie o seu ou comece com alguns modelos prontos.",
+    "add_starters": "Adicionar modelos iniciais",
     "no_results": "Nenhum modelo encontrado",
     "fill_placeholders": "Preencher valores dos marcadores",
     "enter_value": "Insira um valor...",
@@ -2573,7 +2577,10 @@
       "save": "Salvar",
       "cancel": "Cancelar",
       "delete_confirm": "Tem certeza de que deseja excluir este evento?",
-      "color": "Cor"
+      "color": "Cor",
+      "error_end_before_start": "O término não pode ser antes do início",
+      "error_dates_required": "Início e término são obrigatórios",
+      "error_invalid_link": "Insira um link completo começando com http:// ou https://"
     },
     "participants": {
       "title": "Participantes",
@@ -3023,6 +3030,7 @@
     "grid_view": "Vista em grelha",
     "list_view": "Vista em lista",
     "details": "Detalhes",
+    "details_empty": "Selecione um arquivo ou pasta para ver os detalhes",
     "path": "Caminho",
     "preview": "Pré-visualização",
     "preview_error": "Falha ao carregar a pré-visualização",
@@ -3033,7 +3041,7 @@
     "move_error": "Falha ao mover",
     "paste_success": "Colado com sucesso",
     "paste_error": "Falha ao colar",
-    "new_text_file": "Novo arquivo de texto",
+    "new_text_file": "Novo arquivo",
     "file_name": "Nome do arquivo",
     "retry": "Tentar novamente",
     "refresh": "Atualizar",

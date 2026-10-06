@@ -724,6 +724,7 @@
     "source_copied": "Source copiée dans le presse-papiers",
     "error_sending": "Échec de l'envoi de l'email",
     "error_deleting": "Échec de la suppression de l'email",
+    "error_archiving": "Échec de l'archivage de l'email",
     "error_loading": "Échec du chargement des emails",
     "new_email": "Nouvel email",
     "new_email_from": "De {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Le tag ne peut pas être vide",
         "too_long": "Le tag doit faire {max} caractères ou moins",
-        "invalid_chars": "Le tag doit contenir uniquement des lettres, chiffres et tirets"
+        "invalid_chars": "Le tag doit contenir uniquement des lettres, chiffres et tirets",
+        "invalid_format": "Le tag doit commencer et se terminer par une lettre ou un chiffre"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Récents",
     "section_uncategorized": "Autres",
     "no_templates": "Aucun modèle",
+    "empty_hint": "Créez le vôtre ou commencez avec quelques modèles prêts à l'emploi.",
+    "add_starters": "Ajouter des modèles de départ",
     "no_results": "Aucun modèle trouvé",
     "fill_placeholders": "Remplir les variables",
     "enter_value": "Entrez une valeur...",
@@ -2573,7 +2577,10 @@
       "save": "Enregistrer",
       "cancel": "Annuler",
       "delete_confirm": "Êtes-vous sûr de vouloir supprimer cet événement ?",
-      "color": "Couleur"
+      "color": "Couleur",
+      "error_end_before_start": "La fin ne peut pas précéder le début",
+      "error_dates_required": "Le début et la fin sont obligatoires",
+      "error_invalid_link": "Saisissez un lien complet commençant par http:// ou https://"
     },
     "participants": {
       "title": "Participants",
@@ -3023,6 +3030,7 @@
     "grid_view": "Vue en grille",
     "list_view": "Vue en liste",
     "details": "Détails",
+    "details_empty": "Sélectionnez un fichier ou un dossier pour voir ses détails",
     "path": "Chemin",
     "preview": "Aperçu",
     "preview_error": "Échec du chargement de l'aperçu",
@@ -3033,7 +3041,7 @@
     "move_error": "Échec du déplacement",
     "paste_success": "Collé avec succès",
     "paste_error": "Échec du collage",
-    "new_text_file": "Nouveau fichier texte",
+    "new_text_file": "Nouveau fichier",
     "file_name": "Nom du fichier",
     "retry": "Réessayer",
     "refresh": "Actualiser",

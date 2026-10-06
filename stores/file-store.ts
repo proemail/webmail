@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import type { IJMAPClient } from '@/lib/jmap/client-interface';
 import type { FileNode, FileNodeRights } from '@/lib/jmap/types';
+import { contentTypeForFileName, uniqueCopyName } from '@/lib/file-names';
 
 export interface FileResource {
   id: string;
@@ -826,9 +827,12 @@ export const useFileStore = create<FileState>((set, get) => ({
     const { client, currentParentId, refresh } = get();
     if (!client) return;
 
-    const emptyBlob = new File([''], name, { type: 'text/plain' });
+    // The dialog accepts any file name, so the type follows the extension
+    // rather than assuming every new file is plain text.
+    const contentType = contentTypeForFileName(name);
+    const emptyBlob = new File([''], name, { type: contentType });
     const { blobId } = await client.uploadBlob(emptyBlob);
-    await client.createFileNode(name, blobId, 'text/plain', 0, currentParentId);
+    await client.createFileNode(name, blobId, contentType, 0, currentParentId);
     await refresh();
   },
 
@@ -839,10 +843,7 @@ export const useFileStore = create<FileState>((set, get) => ({
     const resource = resources.find(r => r.name === name);
     if (!resource) return;
 
-    const dotIdx = name.lastIndexOf('.');
-    const copyName = dotIdx > 0
-      ? `${name.substring(0, dotIdx)} (copy)${name.substring(dotIdx)}`
-      : `${name} (copy)`;
+    const copyName = uniqueCopyName(name, resources.map(r => r.name));
 
     await client.copyFileNode(resource.id, copyName, currentParentId);
     await refresh();
@@ -906,10 +907,14 @@ export const useFileStore = create<FileState>((set, get) => ({
   },
 
   pasteResources: async () => {
-    const { client, currentParentId, clipboard, refresh } = get();
+    const { client, currentParentId, clipboard, resources, refresh } = get();
     if (!client || !clipboard) return;
 
     const entries: UndoAction['entries'] = [];
+    // The server rejects a second node with the same name in a folder
+    // (alreadyExists), so a copy pasted next to its original - or pasted
+    // twice - needs a fresh name.
+    const takenNames = new Set(resources.map(r => r.name));
 
     for (let i = 0; i < clipboard.ids.length; i++) {
       const id = clipboard.ids[i];
@@ -919,7 +924,9 @@ export const useFileStore = create<FileState>((set, get) => ({
         await client.updateFileNode(id, { parentId: currentParentId });
         entries.push({ id, from: { parentId: clipboard.sourceParentId }, to: { parentId: currentParentId } });
       } else {
-        await client.copyFileNode(id, displayName, currentParentId);
+        const copyName = uniqueCopyName(displayName, takenNames);
+        await client.copyFileNode(id, copyName, currentParentId);
+        takenNames.add(copyName);
       }
     }
 

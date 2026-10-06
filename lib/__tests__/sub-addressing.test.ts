@@ -344,6 +344,13 @@ describe('getTagValidationError', () => {
     expect(getTagValidationError('tag_underscore')).toBe('INVALID_CHARS');
   });
 
+  it('should return INVALID_FORMAT for a leading or trailing dash', () => {
+    expect(getTagValidationError('-')).toBe('INVALID_FORMAT');
+    expect(getTagValidationError('--')).toBe('INVALID_FORMAT');
+    expect(getTagValidationError('-shopping')).toBe('INVALID_FORMAT');
+    expect(getTagValidationError('shopping-')).toBe('INVALID_FORMAT');
+  });
+
   it('should check length before characters', () => {
     const longInvalid = '!'.repeat(MAX_TAG_LENGTH + 1);
     expect(getTagValidationError(longInvalid)).toBe('TOO_LONG');

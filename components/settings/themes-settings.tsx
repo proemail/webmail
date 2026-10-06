@@ -7,10 +7,12 @@ import { cn } from '@/lib/utils';
 import { Check, Lock } from 'lucide-react';
 import { toast } from '@/stores/toast-store';
 import { usePolicyStore } from '@/stores/policy-store';
+import { useConfig } from '@/hooks/use-config';
 
 export function ThemesSettings() {
   const { installedThemes, activeThemeId, activateTheme } = useThemeStore();
   const { isThemeDisabled, getThemePolicy, getForcedThemeId, isThemeForceEnabled } = usePolicyStore();
+  const { appName } = useConfig();
   const themePolicy = getThemePolicy();
   const forcedThemeId = getForcedThemeId(installedThemes.map((theme) => theme.id));
 
@@ -75,7 +77,7 @@ export function ThemesSettings() {
         {/* Default theme card */}
         <ThemeCard
           name="Default"
-          author="Bulwark"
+          author={appName}
           isDefaultTheme
           variants={['light', 'dark']}
           isDark={isDark}

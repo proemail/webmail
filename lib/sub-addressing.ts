@@ -31,6 +31,7 @@ export type TagValidationErrorCode =
   | 'EMPTY'
   | 'TOO_LONG'
   | 'INVALID_CHARS'
+  | 'INVALID_FORMAT'
   | null;
 
 export interface ParsedAddress {
@@ -189,6 +190,12 @@ export function getTagValidationError(tag: string): TagValidationErrorCode {
 
   if (!/^[a-zA-Z0-9-]+$/.test(tag)) {
     return 'INVALID_CHARS';
+  }
+
+  // Dashes only make sense between words: "-", "--" or "-shop-" pass the
+  // character check but produce addresses like user+-@domain.
+  if (tag.startsWith('-') || tag.endsWith('-')) {
+    return 'INVALID_FORMAT';
   }
 
   return null;

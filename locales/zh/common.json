@@ -724,6 +724,7 @@
     "source_copied": "源码已复制到剪贴板",
     "error_sending": "发送邮件失败",
     "error_deleting": "删除邮件失败",
+    "error_archiving": "归档邮件失败",
     "error_loading": "无法加载邮件",
     "new_email": "新邮件",
     "new_email_from": "来自 {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "标签不能为空",
         "too_long": "标签不得超过 {max} 个字符",
-        "invalid_chars": "标签只能包含字母、数字和破折号"
+        "invalid_chars": "标签只能包含字母、数字和破折号",
+        "invalid_format": "标签必须以字母或数字开头和结尾"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "最近使用",
     "section_uncategorized": "其他",
     "no_templates": "还没有模板",
+    "empty_hint": "创建自己的模板，或从几个现成模板开始。",
+    "add_starters": "添加入门模板",
     "no_results": "没有找到模板",
     "fill_placeholders": "填充占位符值",
     "enter_value": "输入一个值...",
@@ -2573,7 +2577,10 @@
       "save": "保存",
       "cancel": "取消",
       "delete_confirm": "您确定要删除此活动吗？",
-      "color": "颜色"
+      "color": "颜色",
+      "error_end_before_start": "结束时间不能早于开始时间",
+      "error_dates_required": "开始和结束时间为必填项",
+      "error_invalid_link": "请输入以 http:// 或 https:// 开头的完整链接"
     },
     "participants": {
       "title": "参加者",
@@ -3023,6 +3030,7 @@
     "grid_view": "网格视图",
     "list_view": "列表视图",
     "details": "详情",
+    "details_empty": "选择文件或文件夹以查看详情",
     "path": "路径",
     "preview": "预览",
     "preview_error": "加载预览失败",
@@ -3033,7 +3041,7 @@
     "move_error": "移动失败",
     "paste_success": "粘贴成功",
     "paste_error": "粘贴失败",
-    "new_text_file": "新建文本文件",
+    "new_text_file": "新建文件",
     "file_name": "文件名",
     "retry": "重试",
     "refresh": "刷新",

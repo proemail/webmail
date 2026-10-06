@@ -724,6 +724,7 @@
     "source_copied": "ソースをクリップボードにコピーしました",
     "error_sending": "メールの送信に失敗しました",
     "error_deleting": "メールの削除に失敗しました",
+    "error_archiving": "メールのアーカイブに失敗しました",
     "error_loading": "メールの読み込みに失敗しました",
     "new_email": "新しいメール",
     "new_email_from": "{sender}から",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "タグは空にできません",
         "too_long": "タグは{max}文字以内にしてください",
-        "invalid_chars": "タグは文字、数字、ハイフンのみ使用できます"
+        "invalid_chars": "タグは文字、数字、ハイフンのみ使用できます",
+        "invalid_format": "タグの先頭と末尾は文字または数字にしてください"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "最近使用",
     "section_uncategorized": "その他",
     "no_templates": "テンプレートがありません",
+    "empty_hint": "自分で作成するか、用意されたテンプレートから始められます。",
+    "add_starters": "スターターテンプレートを追加",
     "no_results": "テンプレートが見つかりません",
     "fill_placeholders": "プレースホルダーの値を入力",
     "enter_value": "値を入力...",
@@ -2573,7 +2577,10 @@
       "save": "保存",
       "cancel": "キャンセル",
       "delete_confirm": "この予定を削除してもよろしいですか？",
-      "color": "色"
+      "color": "色",
+      "error_end_before_start": "終了を開始より前にすることはできません",
+      "error_dates_required": "開始と終了は必須です",
+      "error_invalid_link": "http:// または https:// で始まる完全なリンクを入力してください"
     },
     "participants": {
       "title": "参加者",
@@ -3023,6 +3030,7 @@
     "grid_view": "グリッド表示",
     "list_view": "リスト表示",
     "details": "詳細",
+    "details_empty": "ファイルまたはフォルダーを選択すると詳細が表示されます",
     "path": "パス",
     "preview": "プレビュー",
     "preview_error": "プレビューの読み込みに失敗しました",
@@ -3033,7 +3041,7 @@
     "move_error": "移動に失敗しました",
     "paste_success": "正常に貼り付けました",
     "paste_error": "貼り付けに失敗しました",
-    "new_text_file": "新規テキストファイル",
+    "new_text_file": "新規ファイル",
     "file_name": "ファイル名",
     "retry": "再試行",
     "refresh": "更新",

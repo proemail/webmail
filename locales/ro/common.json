@@ -724,6 +724,7 @@
     "source_copied": "Sursă copiată în clipboard",
     "error_sending": "Nu s-a putut trimite e-mailul",
     "error_deleting": "Nu s-a putut șterge e-mailul",
+    "error_archiving": "Nu s-a putut arhiva e-mailul",
     "error_loading": "Nu s-au putut încărca e-mailurile",
     "new_email": "E-mail nou",
     "new_email_from": "De pe {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Câmpul „Tag” nu poate fi gol",
         "too_long": "Eticheta trebuie să conțină cel mult{max}e",
-        "invalid_chars": "Eticheta trebuie să conțină numai litere, cifre și liniuțe"
+        "invalid_chars": "Eticheta trebuie să conțină numai litere, cifre și liniuțe",
+        "invalid_format": "Eticheta trebuie să înceapă și să se termine cu o literă sau o cifră"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Recent",
     "section_uncategorized": "Altele",
     "no_templates": "Nu există încă șabloane",
+    "empty_hint": "Creați-vă propriul șablon sau începeți cu câteva gata făcute.",
+    "add_starters": "Adaugă șabloane de pornire",
     "no_results": "Nu s-au găsit șabloane",
     "fill_placeholders": "Completați valorile din câmpurile de substituție",
     "enter_value": "Introduceți o valoare...",
@@ -2573,7 +2577,10 @@
       "save": "Salvare",
       "cancel": "Anulează",
       "delete_confirm": "Sunteți sigur că doriți să ștergeți acest eveniment?",
-      "color": "Culoare"
+      "color": "Culoare",
+      "error_end_before_start": "Sfârșitul nu poate fi înaintea începutului",
+      "error_dates_required": "Începutul și sfârșitul sunt obligatorii",
+      "error_invalid_link": "Introduceți un link complet care începe cu http:// sau https://"
     },
     "participants": {
       "title": "Participanți",
@@ -3048,6 +3055,7 @@
     "grid_view": "Vizualizare tabelară",
     "list_view": "Vizualizare listă",
     "details": "Detalii",
+    "details_empty": "Selectați un fișier sau un dosar pentru a vedea detaliile",
     "path": "Cale",
     "preview": "Previzualizare",
     "preview_error": "Nu s-a putut încărca previzualizarea",
@@ -3058,7 +3066,7 @@
     "move_error": "Nu s-a putut muta",
     "paste_success": "S-a lipit cu succes",
     "paste_error": "Nu s-a putut insera",
-    "new_text_file": "Fișier text nou",
+    "new_text_file": "Fișier nou",
     "file_name": "Numele fișierului",
     "retry": "Reîncearcă",
     "refresh": "Reîmprospătează",

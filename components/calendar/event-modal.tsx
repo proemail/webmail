@@ -21,7 +21,7 @@ import {
 } from "@/lib/calendar-participants";
 import { PluginSlot } from "@/components/plugins/plugin-slot";
 import { useSettingsStore } from "@/stores/settings-store";
-import { generateUUID } from "@/lib/utils";
+import { cn, generateUUID } from "@/lib/utils";
 import { useFormatEventDate } from "@/hooks/use-format-event-date";
 import { calendarHooks } from "@/lib/plugin-hooks";
 import type { ConflictWarning } from "@/lib/plugin-types";
@@ -57,6 +57,15 @@ function formatDateInput(d: Date): string {
 
 function formatTimeInput(d: Date): string {
   return format(d, "HH:mm");
+}
+
+function isHttpUrl(value: string): boolean {
+  try {
+    const { protocol } = new URL(value);
+    return protocol === "http:" || protocol === "https:";
+  } catch {
+    return false;
+  }
 }
 
 function buildDuration(startDate: Date, endDate: Date): string {
@@ -249,9 +258,8 @@ export function EventModal({
   const [location, setLocation] = useState(
     event?.locations ? Object.values(event.locations)[0]?.name || "" : ""
   );
-  const [virtualLocation, setVirtualLocation] = useState(
-    event?.virtualLocations ? Object.values(event.virtualLocations)[0]?.uri || "" : ""
-  );
+  const initialVirtualLocation = event?.virtualLocations ? Object.values(event.virtualLocations)[0]?.uri || "" : "";
+  const [virtualLocation, setVirtualLocation] = useState(initialVirtualLocation);
   const [startDate, setStartDate] = useState(formatDateInput(getInitialStart()));
   const [startTime, setStartTime] = useState(formatTimeInput(getInitialStart()));
   const [endDate, setEndDate] = useState(formatDateInput(getInitialEnd()));
@@ -386,9 +394,20 @@ export function EventModal({
     setAttendees(prev => prev.filter(a => a.email.toLowerCase() !== email.toLowerCase()));
   }, []);
 
+  // Shown under the offending field and blocks Save, instead of silently
+  // rewriting what was entered. A link the event already carried is left
+  // alone so an invitation's tel:/sip: URI doesn't make the event uneditable.
+  const datesMissing = !startDate || !endDate || (!allDay && (!startTime || !endTime));
+  const endBeforeStart = !datesMissing && (allDay
+    ? endDate < startDate
+    : `${endDate}T${endTime}` < `${startDate}T${startTime}`);
+  const trimmedLink = virtualLocation.trim();
+  const linkInvalid = trimmedLink !== "" && trimmedLink !== initialVirtualLocation && !isHttpUrl(trimmedLink);
+  const hasValidationError = datesMissing || endBeforeStart || linkInvalid;
+
   const handleSave = useCallback(async () => {
     const trimmedTitle = title.trim();
-    if (!trimmedTitle || isSaving) return;
+    if (!trimmedTitle || isSaving || hasValidationError) return;
     if (trimmedTitle.length > 500 || description.trim().length > 10000 || location.trim().length > 500) return;
 
     const pendingAttendee = participantInputRef.current?.flush() ?? null;
@@ -402,18 +421,9 @@ export function EventModal({
     let duration: string;
 
     if (allDay) {
-      let inclusiveEnd = new Date(`${endDate}T00:00:00`);
-      if (inclusiveEnd < start) {
-        inclusiveEnd = new Date(start);
-      }
-      duration = buildAllDayDuration(start, inclusiveEnd);
+      duration = buildAllDayDuration(start, new Date(`${endDate}T00:00:00`));
     } else {
-      const endStr = `${endDate}T${endTime}:00`;
-      let end = new Date(endStr);
-      if (end <= start) {
-        end = new Date(start.getTime() + 3600000);
-      }
-      duration = buildDuration(start, end);
+      duration = buildDuration(start, new Date(`${endDate}T${endTime}:00`));
     }
 
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -541,7 +551,7 @@ export function EventModal({
     } finally {
       setIsSaving(false);
     }
-  }, [title, description, location, virtualLocation, startDate, startTime, endDate, endTime, allDay, calendarId, recurrence, customRule, alertRows, attendees, sendInvitations, currentUserEmails, existingParticipants, event, onSave, isSaving]);
+  }, [title, description, location, virtualLocation, startDate, startTime, endDate, endTime, allDay, calendarId, recurrence, customRule, alertRows, attendees, sendInvitations, currentUserEmails, existingParticipants, event, onSave, isSaving, hasValidationError]);
 
   const handleRsvp = useCallback((status: CalendarParticipant['participationStatus']) => {
     if (!event || !userParticipantId || !onRsvp) return;
@@ -1024,7 +1034,12 @@ export function EventModal({
               onChange={(e) => setVirtualLocation(e.target.value)}
               placeholder="https://meet.example.com/..."
               maxLength={2000}
+              aria-invalid={linkInvalid}
+              className={cn(linkInvalid && "border-destructive")}
             />
+            {linkInvalid && (
+              <p className="text-xs text-destructive mt-1">{t("form.error_invalid_link")}</p>
+            )}
             <PluginSlot
               name="calendar-event-actions"
               className="mt-2 flex flex-wrap gap-2"
@@ -1120,6 +1135,11 @@ export function EventModal({
               </div>
             )}
           </div>
+          {(datesMissing || endBeforeStart) && (
+            <p role="alert" className="text-xs text-destructive -mt-2">
+              {t(datesMissing ? "form.error_dates_required" : "form.error_end_before_start")}
+            </p>
+          )}
 
           {pluginConflictWarnings.length > 0 && (
             <div className="space-y-1.5">
@@ -1342,7 +1362,7 @@ export function EventModal({
           <Button variant="outline" onClick={isEdit ? () => setMode("view") : onClose}>
             {t("form.cancel")}
           </Button>
-          <Button onClick={handleSave} disabled={!title.trim() || isSaving}>
+          <Button onClick={handleSave} disabled={!title.trim() || isSaving || hasValidationError}>
             {t("form.save")}
           </Button>
         </div>

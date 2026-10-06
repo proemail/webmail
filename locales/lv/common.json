@@ -724,6 +724,7 @@
     "source_copied": "Avota kods nokopēts starpliktuvē",
     "error_sending": "Neizdevās nosūtīt vēstuli",
     "error_deleting": "Neizdevās izdzēst vēstuli",
+    "error_archiving": "Neizdevās arhivēt vēstuli",
     "error_loading": "Neizdevās ielādēt vēstules",
     "new_email": "Jauna vēstule",
     "new_email_from": "No: {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Tags nevar būt tukšs",
         "too_long": "Tags nedrīkst pārsniegt {max} rakstzīmes",
-        "invalid_chars": "Tags var saturēt tikai burtus, ciparus un domuzīmes"
+        "invalid_chars": "Tags var saturēt tikai burtus, ciparus un domuzīmes",
+        "invalid_format": "Tagam jāsākas un jābeidzas ar burtu vai ciparu"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Nesenie",
     "section_uncategorized": "Citi",
     "no_templates": "Veidnes vēl nav izveidotas",
+    "empty_hint": "Izveidojiet savu vai sāciet ar dažām gatavām veidnēm.",
+    "add_starters": "Pievienot sākuma veidnes",
     "no_results": "Veidnes nav atrastas",
     "fill_placeholders": "Aizpildīt mainīgo vērtības",
     "enter_value": "Ievadiet vērtību...",
@@ -2572,7 +2576,10 @@
       "save": "Saglabāt",
       "cancel": "Atcelt",
       "delete_confirm": "Vai tiešām vēlaties dzēst šo pasākumu?",
-      "color": "Krāsa"
+      "color": "Krāsa",
+      "error_end_before_start": "Beigas nevar būt pirms sākuma",
+      "error_dates_required": "Sākums un beigas ir obligāti",
+      "error_invalid_link": "Ievadiet pilnu saiti, kas sākas ar http:// vai https://"
     },
     "participants": {
       "title": "Dalībnieki",
@@ -3023,6 +3030,7 @@
     "grid_view": "Režģis",
     "list_view": "Saraksts",
     "details": "Sīkāka informācija",
+    "details_empty": "Atlasiet failu vai mapi, lai skatītu informāciju",
     "path": "Ceļš",
     "preview": "Priekšskatījums",
     "preview_error": "Neizdevās ielādēt priekšskatījumu",
@@ -3033,7 +3041,7 @@
     "move_error": "Neizdevās pārvietot",
     "paste_success": "Ielīmēts sekmīgi",
     "paste_error": "Neizdevās ielīmēt",
-    "new_text_file": "Jauns teksta fails",
+    "new_text_file": "Jauns fails",
     "file_name": "Faila nosaukums",
     "retry": "Mēģināt vēlreiz",
     "refresh": "Atsvaidzināt",

@@ -14,9 +14,11 @@ import type { EmailTemplate } from '@/lib/template-types';
 interface TemplateManagerModalProps {
   isOpen: boolean;
   onClose: () => void;
+  /** Open straight into the new-template form (only read on mount). */
+  startCreating?: boolean;
 }
 
-export function TemplateManagerModal({ isOpen, onClose }: TemplateManagerModalProps) {
+export function TemplateManagerModal({ isOpen, onClose, startCreating = false }: TemplateManagerModalProps) {
   const t = useTranslations('templates');
   const tSettings = useTranslations('settings.templates');
 
@@ -31,7 +33,7 @@ export function TemplateManagerModal({ isOpen, onClose }: TemplateManagerModalPr
   } = useTemplateStore();
 
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [isCreating, setIsCreating] = useState(false);
+  const [isCreating, setIsCreating] = useState(startCreating);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 

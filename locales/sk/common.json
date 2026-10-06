@@ -724,6 +724,7 @@
     "source_copied": "Zdrojový kód skopírovaný do schránky",
     "error_sending": "Odoslanie e-mailu zlyhalo",
     "error_deleting": "Odstránenie e-mailu zlyhalo",
+    "error_archiving": "Archivácia e-mailu zlyhala",
     "error_loading": "Načítanie e-mailov zlyhalo",
     "new_email": "Nový e-mail",
     "new_email_from": "Od {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Štítok nesmie byť prázdny",
         "too_long": "Štítok môže mať maximálne {max} znakov",
-        "invalid_chars": "Štítok môže obsahovať iba písmená, číslice a pomlčky"
+        "invalid_chars": "Štítok môže obsahovať iba písmená, číslice a pomlčky",
+        "invalid_format": "Štítok musí začínať a končiť písmenom alebo číslicou"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Nedávne",
     "section_uncategorized": "Ostatné",
     "no_templates": "Zatiaľ žiadne šablóny",
+    "empty_hint": "Vytvorte si vlastnú alebo začnite s niekoľkými pripravenými.",
+    "add_starters": "Pridať úvodné šablóny",
     "no_results": "Neboli nájdené žiadne šablóny",
     "fill_placeholders": "Vyplniť hodnoty premenných",
     "enter_value": "Zadajte hodnotu...",
@@ -2573,7 +2577,10 @@
       "save": "Uložiť",
       "cancel": "Zrušiť",
       "delete_confirm": "Naozaj chcete odstrániť túto udalosť?",
-      "color": "Farba"
+      "color": "Farba",
+      "error_end_before_start": "Koniec nemôže byť pred začiatkom",
+      "error_dates_required": "Začiatok a koniec sú povinné",
+      "error_invalid_link": "Zadajte celý odkaz začínajúci na http:// alebo https://"
     },
     "participants": {
       "title": "Účastníci",
@@ -3048,6 +3055,7 @@
     "grid_view": "Zobrazenie mriežky",
     "list_view": "Zobrazenie zoznamu",
     "details": "Podrobnosti",
+    "details_empty": "Vyberte súbor alebo priečinok na zobrazenie podrobností",
     "path": "Cesta",
     "preview": "Náhľad",
     "preview_error": "Náhľad sa nepodarilo načítať",
@@ -3058,7 +3066,7 @@
     "move_error": "Presun zlyhal",
     "paste_success": "Úspešne vložené",
     "paste_error": "Vloženie zlyhalo",
-    "new_text_file": "Nový textový súbor",
+    "new_text_file": "Nový súbor",
     "file_name": "Názov súboru",
     "retry": "Opakovať",
     "refresh": "Obnoviť",

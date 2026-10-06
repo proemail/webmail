@@ -724,6 +724,7 @@
     "source_copied": "Source copied to clipboard",
     "error_sending": "Failed to send email",
     "error_deleting": "Failed to delete email",
+    "error_archiving": "Failed to archive email",
     "error_loading": "Failed to load emails",
     "new_email": "New email",
     "new_email_from": "From {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Tag cannot be empty",
         "too_long": "Tag must be {max} characters or less",
-        "invalid_chars": "Tag must contain only letters, numbers, and dashes"
+        "invalid_chars": "Tag must contain only letters, numbers, and dashes",
+        "invalid_format": "Tag must start and end with a letter or number"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Recent",
     "section_uncategorized": "Other",
     "no_templates": "No templates yet",
+    "empty_hint": "Create your own, or start with a few ready-made ones.",
+    "add_starters": "Add starter templates",
     "no_results": "No templates found",
     "fill_placeholders": "Fill Placeholder Values",
     "enter_value": "Enter a value...",
@@ -2573,7 +2577,10 @@
       "save": "Save",
       "cancel": "Cancel",
       "delete_confirm": "Are you sure you want to delete this event?",
-      "color": "Color"
+      "color": "Color",
+      "error_end_before_start": "End cannot be before start",
+      "error_dates_required": "Start and end are required",
+      "error_invalid_link": "Enter a full link starting with http:// or https://"
     },
     "participants": {
       "title": "Participants",
@@ -3048,6 +3055,7 @@
     "grid_view": "Grid view",
     "list_view": "List view",
     "details": "Details",
+    "details_empty": "Select a file or folder to see its details",
     "path": "Path",
     "preview": "Preview",
     "preview_error": "Failed to load preview",
@@ -3058,7 +3066,7 @@
     "move_error": "Failed to move",
     "paste_success": "Pasted successfully",
     "paste_error": "Failed to paste",
-    "new_text_file": "New Text File",
+    "new_text_file": "New File",
     "file_name": "File name",
     "retry": "Retry",
     "refresh": "Refresh",

@@ -87,3 +87,42 @@ describe('email-store archive thread behavior', () => {
     expect(state.threadEmailsCache.has('thread-1')).toBe(false);
   });
 });
+
+describe('email-store batch archive without an Archive folder', () => {
+  beforeEach(() => {
+    const inbox = makeMailbox({ id: 'inbox', role: 'inbox' });
+    useEmailStore.setState({
+      emails: [makeEmail('email-1', 'thread-1'), makeEmail('email-2', 'thread-2')],
+      mailboxes: [inbox],
+      accountMailboxes: {},
+      viewingAccountId: null,
+      selectedMailbox: 'inbox',
+      selectedEmail: null,
+      selectedEmailIds: new Set(['email-1']),
+      error: null,
+    });
+  });
+
+  it('creates the Archive folder with the archive role, then archives into it', async () => {
+    const created = makeMailbox({ id: 'new-archive', name: 'Archive', role: 'archive', accountId: 'acct' });
+    const client = {
+      createMailbox: vi.fn().mockResolvedValue(created),
+      batchArchiveEmails: vi.fn().mockResolvedValue(undefined),
+      getMailboxes: vi.fn().mockResolvedValue([makeMailbox({ id: 'inbox', role: 'inbox' }), created]),
+    } as unknown as IJMAPClient;
+    // The post-archive list refresh is not what this test is about.
+    useEmailStore.setState({ refreshCurrentMailbox: vi.fn().mockResolvedValue(undefined) });
+
+    await useEmailStore.getState().batchArchive(client);
+
+    expect(client.createMailbox).toHaveBeenCalledWith('Archive', undefined, undefined, 'archive');
+    expect(client.batchArchiveEmails).toHaveBeenCalledWith(
+      [expect.objectContaining({ id: 'email-1' })],
+      'new-archive',
+      expect.any(String),
+      expect.any(Array),
+      'acct',
+    );
+    expect(useEmailStore.getState().emails.map(e => e.id)).toEqual(['email-2']);
+  });
+});

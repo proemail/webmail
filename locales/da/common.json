@@ -724,6 +724,7 @@
     "source_copied": "Kilde kopieret til udklipsholder",
     "error_sending": "Kunne ikke sende e-mail",
     "error_deleting": "Kunne ikke slette e-mail",
+    "error_archiving": "Kunne ikke arkivere e-mail",
     "error_loading": "Kunne ikke indlæse e-mails",
     "new_email": "Ny e-mail",
     "new_email_from": "Fra {sender}",
@@ -2140,7 +2141,8 @@
       "validation": {
         "empty": "Tag kan ikke være tomt",
         "too_long": "Tag skal være {max} tegn eller mindre",
-        "invalid_chars": "Tag må kun indeholde bogstaver, tal og bindestreger"
+        "invalid_chars": "Tag må kun indeholde bogstaver, tal og bindestreger",
+        "invalid_format": "Tag skal starte og slutte med et bogstav eller tal"
       }
     },
     "badge": {
@@ -2160,6 +2162,8 @@
     "section_recent": "Seneste",
     "section_uncategorized": "Andet",
     "no_templates": "Ingen skabeloner endnu",
+    "empty_hint": "Opret din egen, eller start med et par færdige.",
+    "add_starters": "Tilføj startskabeloner",
     "no_results": "Ingen skabeloner fundet",
     "fill_placeholders": "Udfyld pladsholderværdier",
     "enter_value": "Indtast en værdi...",
@@ -2573,7 +2577,10 @@
       "save": "Gem",
       "cancel": "Annuller",
       "delete_confirm": "Er du sikker på, at du vil slette denne begivenhed?",
-      "color": "Farve"
+      "color": "Farve",
+      "error_end_before_start": "Slut kan ikke være før start",
+      "error_dates_required": "Start og slut er påkrævet",
+      "error_invalid_link": "Angiv et fuldt link, der starter med http:// eller https://"
     },
     "participants": {
       "title": "Deltagere",
@@ -3046,6 +3053,7 @@
     "grid_view": "Gittervisning",
     "list_view": "Listevisning",
     "details": "Detaljer",
+    "details_empty": "Vælg en fil eller mappe for at se detaljer",
     "path": "Sti",
     "preview": "Forhåndsvisning",
     "preview_error": "Kunne ikke indlæse forhåndsvisning",
@@ -3056,7 +3064,7 @@
     "move_error": "Kunne ikke flytte",
     "paste_success": "Indsat",
     "paste_error": "Kunne ikke indsætte",
-    "new_text_file": "Ny tekstfil",
+    "new_text_file": "Ny fil",
     "file_name": "Filnavn",
     "retry": "Prøv igen",
     "refresh": "Opdatér",
