@@ -66,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations({ locale });
 
   return {
-    title: process.env.APP_NAME || process.env.NEXT_PUBLIC_APP_NAME || "Webmail",
+    title: process.env.APP_NAME || process.env.NEXT_PUBLIC_APP_NAME || "ProEmail",
     description: t("meta_description"),
     // A private webmail should not be indexed by search engines. This is opt-in
     // via Settings -> General; the default (false) emits noindex/nofollow.
@@ -76,7 +76,7 @@ export async function generateMetadata(): Promise<Metadata> {
     appleWebApp: {
       capable: true,
       statusBarStyle: "black-translucent",
-      title: process.env.APP_NAME || process.env.NEXT_PUBLIC_APP_NAME || "Webmail",
+      title: process.env.APP_NAME || process.env.NEXT_PUBLIC_APP_NAME || "ProEmail",
     },
     formatDetection: {
       telephone: false,
@@ -102,7 +102,7 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-title"
-          content={process.env.APP_NAME || process.env.NEXT_PUBLIC_APP_NAME || "Webmail"}
+          content={process.env.APP_NAME || process.env.NEXT_PUBLIC_APP_NAME || "ProEmail"}
         />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         {parentOrigin && (
